@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hello/common/Application.dart';
+import 'package:flutter_hello/common/events.dart';
+import 'package:flutter_hello/utils/utils.dart';
 import 'package:get/get.dart';
 import 'package:flutter_hello/pages/home/views/video_view.dart';
 
@@ -13,6 +16,7 @@ class HomeRecommendController extends GetxController {
 
   var videoList = List.generate(10, (index) => "assets/videos/$index.MP4");
   var progress = 0.0.obs; //进度条
+  var videoH = screenH.obs;
 
   @override
   void onInit() {
@@ -35,6 +39,9 @@ class HomeRecommendController extends GetxController {
 
 //暂未考虑刷新数据的问题
   VideoView getVideoView(int index) {
+    if (currentIndex == index && currentVideoView != null) {
+      return currentVideoView!;
+    }
     VideoView videoView = VideoView(
       videoList[index % videoList.length],
       key: GlobalKey(),
@@ -75,6 +82,21 @@ class HomeRecommendController extends GetxController {
   slider(double progress) {
     this.progress.value = progress;
   }
+
+  commentLayout() {
+    if (currentVideoView == null) {
+      return;
+    }
+    if (videoH.value == screenH) {
+      videoH.value = screenH * 1 / 3;
+      Application.eventBus.fire(HideHomeNavBar(true));
+    } else {
+      videoH.value = screenH;
+      Application.eventBus.fire(HideHomeNavBar(false));
+    }
+    update();
+  }
+
   // final _obj = ''.obs;
   // set obj(value) => this._obj.value = value;
   // get obj => this._obj.value;

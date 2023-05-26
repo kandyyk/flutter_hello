@@ -1,7 +1,6 @@
 library utils;
 
 import 'dart:convert';
-import 'dart:ffi';
 import 'dart:ui' as ui show window;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dart_mock/dart_mock.dart' as mock;
@@ -9,7 +8,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hello/http/network.dart';
-import 'package:flutter_hello/ui/theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

@@ -2,8 +2,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hello/pages/community/models/mock_friend.dart';
 import 'package:flutter_hello/pages/community/views/friend_grid_image.dart';
+import 'package:flutter_hello/route/page_name.dart';
 import 'package:flutter_hello/ui/theme.dart';
 import 'package:flutter_hello/utils/utils.dart';
+import 'package:get/get.dart';
 
 class FriendCell extends StatefulWidget {
   final MockFriend data;
@@ -28,13 +30,17 @@ class _FriendCellState extends State<FriendCell> {
         children: [
           Container(
             margin: const EdgeInsets.fromLTRB(0, 3, 5, 0),
-            child: SizedBox(
-              width: 24,
-              height: 24,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child:
-                    Utils.imageCache(widget.data.avatarUrl, fit: BoxFit.cover),
+            child: InkWell(
+              onTap: () =>
+                  Get.toNamed(PageName.personDetail, arguments: widget.data),
+              child: SizedBox(
+                width: 24,
+                height: 24,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Utils.imageCache(widget.data.avatarUrl,
+                      fit: BoxFit.cover),
+                ),
               ),
             ),
           ),

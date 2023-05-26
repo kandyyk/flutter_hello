@@ -15,21 +15,22 @@ void main() {
         return GetMaterialApp(
           title: 'xxxx',
           theme: ThemeData(
-            appBarTheme: AppBarTheme(
-              elevation: 0,
-              centerTitle: true,
-              color: Colors.white,
-              titleTextStyle: TextStyle(
-                color: KKTheme.base,
-                fontSize: KKTheme.fsXl,
-                fontWeight: FontWeight.w500,
+              appBarTheme: AppBarTheme(
+                elevation: 0,
+                centerTitle: true,
+                color: Colors.white,
+                titleTextStyle: TextStyle(
+                  color: KKTheme.base,
+                  fontSize: KKTheme.fsXl,
+                  fontWeight: FontWeight.w500,
+                ),
+                iconTheme: IconThemeData(
+                  color: KKTheme.base,
+                  size: KKTheme.fsXl,
+                ),
               ),
-              iconTheme: IconThemeData(
-                color: KKTheme.base,
-                size: KKTheme.fsXl,
-              ),
-            ),
-          ),
+              highlightColor: Colors.transparent, //去除水波纹
+              splashColor: Colors.transparent), //去除水波纹
           initialRoute: PageName.tabs,
           getPages: getRoutes,
           builder: EasyLoading.init(),

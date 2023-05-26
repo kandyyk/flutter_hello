@@ -23,6 +23,7 @@ class MockFriend {
   final String nickname;
   final String avatarUrl;
   final String content;
+  final String wxID;
   final List<String> images;
   final String time;
   final List<String> likePeople;
@@ -31,6 +32,7 @@ class MockFriend {
   MockFriend({
     required this.nickname,
     required this.avatarUrl,
+    required this.wxID,
     required this.content,
     required this.images,
     required this.time,
@@ -51,6 +53,7 @@ class MockFriend {
       _dataList.add(MockFriend(
         nickname: mock.cname(),
         avatarUrl: Utils.getRandomImage(),
+        wxID: mock.guid(),
         content: mock.cword(min: 20, max: 100),
         images: imgs,
         time: '${mock.dateTime().hour}小时前',

@@ -38,7 +38,7 @@ class _ActionButtonState extends State<ActionButton> {
       },
       child: Column(
         children: [
-          widget.toggle ? widget.icon : widget.actionIcon ?? widget.icon,
+          widget.toggle ? widget.actionIcon ?? widget.icon : widget.icon,
           Text(
             widget.text,
             style: const TextStyle(

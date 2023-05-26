@@ -1,29 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hello/pages/home/controllers/home_recommend_controller.dart';
 import 'package:flutter_hello/pages/home/views/action_button.dart';
+import 'package:flutter_hello/ui/keep_alive_wrapper.dart';
 import 'package:flutter_hello/utils/utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter_hello/pages/home/views/video_view.dart';
+import 'package:flutter_hello/utils/assets_helper.dart';
 
 class HomeRecommendPage extends GetView<HomeRecommendController> {
   HomeRecommendController c = Get.put(HomeRecommendController());
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.black,
-      child: PageView.builder(
-        controller: c.pageController,
-        scrollDirection: Axis.vertical,
-        itemCount: 30,
-        itemBuilder: (context, index) => Stack(
-          children: [
-            c.getVideoView(index),
-            _actions(),
-            _about(),
-          ],
+    return KeepAliveWrapper(
+      child: Container(
+        color: Colors.black,
+        child: PageView.builder(
+          controller: c.pageController,
+          scrollDirection: Axis.vertical,
+          itemCount: 30,
+          itemBuilder: (context, index) => Stack(
+            children: [
+              Obx(
+                () => AnimatedPositioned(
+                    width: screenW,
+                    height: c.videoH.value,
+                    duration: const Duration(milliseconds: 300),
+                    child: c.getVideoView(index)),
+              ),
+              _actions(),
+              _about(),
+            ],
+          ),
+          // onPageChanged: (index) => c.playCurrentVideo(),
         ),
-        // onPageChanged: (index) => c.playCurrentVideo(),
       ),
     );
 
@@ -44,13 +54,13 @@ class HomeRecommendPage extends GetView<HomeRecommendController> {
         right: 0,
         bottom: 50.w,
         width: 50.w,
-        height: 200.h,
+        height: 240.h,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             likeButton(),
             _commentButton(),
-            // _collectButton(),
+            _collectButton(),
             _shareButton()
           ],
         ));
@@ -122,11 +132,11 @@ class HomeRecommendPage extends GetView<HomeRecommendController> {
     return ActionButton(
       icon: Image.asset(
         'assets/images/red_heart.webp',
+        color: Colors.white,
         width: 40,
       ),
       actionIcon: Image.asset(
         'assets/images/red_heart.webp',
-        color: Colors.white,
         width: 40,
       ),
       text: "12.5万",
@@ -141,19 +151,34 @@ class HomeRecommendPage extends GetView<HomeRecommendController> {
         width: 40,
       ),
       text: "45.0万",
-      onTap: () {},
+      onTap: () async {
+        c.commentLayout();
+        var _ = await Get.bottomSheet(
+          Container(
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10))),
+            height: screenH * 2 / 3,
+          ),
+          isScrollControlled: true,
+          //遮罩颜色
+          barrierColor: Colors.transparent,
+        );
+        c.commentLayout();
+      },
     );
   }
 
   Widget _collectButton() {
     return ActionButton(
       icon: Image.asset(
-        'assets/images/collect.webp',
+        AssetsHelper.collectionWhite,
         width: 40,
       ),
       actionIcon: Image.asset(
-        'assets/images/collect.webp',
-        color: Colors.white,
+        AssetsHelper.collectionYellow,
         width: 40,
       ),
       text: "3.4万",

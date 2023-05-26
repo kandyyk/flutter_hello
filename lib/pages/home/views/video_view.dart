@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hello/utils/utils.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
 
@@ -81,28 +82,20 @@ class _VideoViewState extends State<VideoView> {
     return Stack(
       children: [
         InkWell(
-          onTap: () {
-            setState(() {
-              changePlayState();
-            });
-          },
+          onTap: changePlayState,
           child: Chewie(
             controller: widget.chewieController,
           ),
         ),
         widget.isPlaying
             ? Container()
-            : InkWell(
-                onTap: () {
-                  setState(() {
-                    changePlayState();
-                  });
-                },
-                child: Center(
+            : Center(
+                child: InkWell(
+                    onTap: changePlayState,
                     child: Image.asset(
-                  'assets/images/pause.webp',
-                  scale: 1.5,
-                )),
+                      'assets/images/pause.webp',
+                      scale: 1.5,
+                    )),
               )
       ],
     );
@@ -110,7 +103,7 @@ class _VideoViewState extends State<VideoView> {
 
   @override
   void dispose() {
-    debugPrint('VideoView dispose');
+    //首页一直存在，videoPlayerController不移除
     widget.videoPlayerController.dispose();
     widget.chewieController.dispose();
     super.dispose();

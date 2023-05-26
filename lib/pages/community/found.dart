@@ -1,3 +1,5 @@
+import 'package:flutter_hello/ui/keep_alive_wrapper.dart';
+
 import 'views/found_cell.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hello/pages/community/models/mock_found.dart';
@@ -15,8 +17,10 @@ class _FoundPageViewState extends State<FoundPageView> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: masonry(),
+    return KeepAliveWrapper(
+      child: SingleChildScrollView(
+        child: masonry(),
+      ),
     );
   }
 

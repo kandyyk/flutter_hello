@@ -3,7 +3,11 @@ import 'package:flutter_hello/pages/home/home.dart';
 import 'package:flutter_hello/pages/login/controllers/forgot_password_controller.dart';
 import 'package:flutter_hello/pages/login/forgot_password.dart';
 import 'package:flutter_hello/pages/login/login.dart';
+import 'package:flutter_hello/pages/message/chart.dart';
+import 'package:flutter_hello/pages/message/controllers.dart/chart_controller.dart';
+import 'package:flutter_hello/pages/message/controllers.dart/person_detail_controller.dart';
 import 'package:flutter_hello/pages/message/message.dart';
+import 'package:flutter_hello/pages/message/person_detail.dart';
 import 'package:flutter_hello/pages/profile/controllers/profile_controller.dart';
 import 'package:flutter_hello/pages/profile/profile.dart';
 import 'package:flutter_hello/pages/store/controllers/search_controller.dart';
@@ -47,4 +51,13 @@ List<GetPage<dynamic>> getRoutes = [
       name: PageName.forgotPassword,
       page: () => ForgotPasswordPage(),
       binding: ForgotPasswordBinding()),
+  GetPage(
+      name: PageName.personDetail,
+      page: () => PersonDetailPage(),
+      binding: PersonDetailBinding()),
+  GetPage(
+    name: PageName.chart,
+    page: () => ChartPage(),
+    binding: ChartBinding(),
+  ),
 ];

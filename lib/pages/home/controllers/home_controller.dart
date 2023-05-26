@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hello/pages/tabs/controllers/tabs_controller.dart';
+import 'package:flutter_hello/common/Application.dart';
+import 'package:flutter_hello/common/events.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController with GetTickerProviderStateMixin {
@@ -17,6 +18,7 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
     ),
   ];
 
+  var hideNavBar = false.obs;
   RxInt currentIndex = 2.obs;
   // int _selected = 0;
   late TabController tabcontroller;
@@ -28,6 +30,16 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
     tabcontroller = TabController(
         length: tabs.length, vsync: this, initialIndex: currentIndex.value);
     pageController = PageController(initialPage: currentIndex.value);
+  }
+
+  @override
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
+    Application.eventBus.on<HideHomeNavBar>().listen((event) {
+      hideNavBar.value = event.hide;
+      update();
+    });
   }
 
   //actions

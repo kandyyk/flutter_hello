@@ -19,11 +19,12 @@ class HomePage extends GetView<HomeController> {
         DefaultTabController(
           length: c.tabs.length,
           child: PageView(
+            allowImplicitScrolling: true, //避免子页面销毁
             controller: c.pageController,
-            onPageChanged: (index) => c.pageViewChange(index),
+            onPageChanged: c.pageViewChange,
             children: [
-              HomeNoticePage(),
-              HomeStorePage(),
+              const HomeNoticePage(),
+              const HomeStorePage(),
               HomeRecommendPage(),
             ],
           ),
@@ -34,37 +35,47 @@ class HomePage extends GetView<HomeController> {
   }
 
   Widget _tabBar() {
-    return SafeArea(
-      child: SizedBox(
-        height: 50,
-        child: AppBar(
-          backgroundColor: Colors.transparent,
-          title: TabBar(
-            labelColor: Colors.white,
-            labelStyle:
-                const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            indicatorSize: TabBarIndicatorSize.label,
-            indicatorColor: Colors.white,
-            indicatorWeight: 2.5,
-            tabs: c.tabs,
-            controller: c.tabcontroller,
-            onTap: (index) => c.tabTap(index),
-          ),
-          leading: InkWell(
-            onTap: () {},
-            child: const Icon(Icons.qr_code_scanner_outlined),
-          ),
-          actions: [
-            SizedBox(
-              width: 60,
-              child: InkWell(
-                onTap: () {},
-                child: const Icon(Icons.search),
+    return Obx(
+      () => c.hideNavBar.value
+          ? Container()
+          : SafeArea(
+              child: SizedBox(
+                height: 50,
+                child: AppBar(
+                  backgroundColor: Colors.transparent,
+                  title: TabBar(
+                    labelColor: Colors.white,
+                    labelStyle: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
+                    indicatorSize: TabBarIndicatorSize.label,
+                    indicatorColor: Colors.white,
+                    indicatorWeight: 2.5,
+                    tabs: c.tabs,
+                    controller: c.tabcontroller,
+                    onTap: c.tabTap,
+                  ),
+                  leading: InkWell(
+                    onTap: () {},
+                    child: const Icon(
+                      Icons.qr_code_scanner_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                  actions: [
+                    SizedBox(
+                      width: 60,
+                      child: InkWell(
+                        onTap: () {},
+                        child: const Icon(
+                          Icons.search,
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
-            )
-          ],
-        ),
-      ),
+            ),
     );
   }
 }

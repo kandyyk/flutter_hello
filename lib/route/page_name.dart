@@ -8,6 +8,8 @@ class PageName {
   static String login = '/login';
   static String forgotPassword = '/login/forgot_password';
   static String search = '/store/search';
+  static String personDetail = '/message/personDetail';
+  static String chart = '/message/cart';
 
   static List<String> bottomPageList = [home, community, message, profile];
 }

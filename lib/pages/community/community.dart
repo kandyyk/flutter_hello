@@ -25,7 +25,7 @@ class CommunityPage extends GetView<CommunityController> {
               Expanded(
                   child: PageView(
                 controller: c.pageController,
-                onPageChanged: c.changePage,
+                onPageChanged: c.pageViewChange,
                 children: const [
                   FoundPageView(),
                   RecommendPageView(),

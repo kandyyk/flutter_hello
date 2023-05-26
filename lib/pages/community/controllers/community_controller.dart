@@ -31,6 +31,12 @@ class CommunityController extends GetxController
 
   changePage(int index) {
     currentIndex = index;
-    tabcontroller.animateTo(currentIndex);
+    pageController.jumpToPage(index);
+    update();
+  }
+
+  void pageViewChange(int index) {
+    tabcontroller.animateTo(index);
+    update();
   }
 }
