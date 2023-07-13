@@ -6,4 +6,4 @@
 使用组件GetX、dio、provide、event_bus、chewie、dart_mock等。
 
 ### 页面效果如下
-![](https://github.com/kandyyk/flutter_hello/assets/106481734/070ec825-f988-40b0-98a8-4889493c4b3a)
+![](https://github-production-user-asset-6210df.s3.amazonaws.com/106481734/253269018-9bb8ea6e-1c7f-4d4d-b62d-2ad96afa1c0f.png)
