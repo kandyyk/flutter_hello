@@ -1,16 +1,13 @@
 # flutter_hello
 
-A new Flutter project.
+###该项目是一个练手项目：
+**5个tab分别实现抖音、小红书、购物、微信朋友圈、个人页面。功能还在完善中。。。**
 
-## Getting Started
+使用组件GetX、dio、provide、event_bus、chewie、dart_mock等。
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+###页面效果如下
+![抖音](./opensource/t1.PNG)
+![小红书](./opensource/t2.PNG)
+![购物](./opensource/t3.PNG)
+![微信朋友圈](./opensource/t4.PNG)
+![个人页面](./opensource/t5.PNG)
